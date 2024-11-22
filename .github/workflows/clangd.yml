@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-    matrix:
-      include:
+    strategy:
+      matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         arch: [amd64, arm64]
     runs-on: ${{ matrix.os }}
