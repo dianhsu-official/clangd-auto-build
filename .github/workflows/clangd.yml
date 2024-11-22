@@ -1,4 +1,4 @@
-name: Clangd
+name: clangd
 
 on:
   push:
@@ -19,15 +19,15 @@ jobs:
       with:
         repository: llvm/llvm-project
     - name: Install essential packages (Ubuntu)
-      if: ${{ contains(matrix.os 'ubuntu') }}
+      if: ${{ contains(matrix.os, 'ubuntu') }}
       run: sudo apt-get install -y ninja-build
 
     - name: Install essential packages (Windows)
-      if: ${{ contains(matrix.os 'windows') }}
+      if: ${{ contains(matrix.os, 'windows') }}
       run: choco install ninja
 
     - name: Install essential packages (MacOS)
-      if: ${{ contains(matrix.os 'macos') }}
+      if: ${{ contains(matrix.os, 'macos') }}
       run: brew install --cask binary-ninja
     
     - name: Build
