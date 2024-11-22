@@ -28,7 +28,7 @@ jobs:
 
     - name: Install essential packages (MacOS)
       if: ${{ contains(matrix.os, 'macos') }}
-      run: brew install --cask binary-ninja
+      run: brew install ninja
     
     - name: Build
       run: |
