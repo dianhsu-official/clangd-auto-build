@@ -36,3 +36,16 @@ jobs:
         cd build
         cmake -G Ninja ../llvm/ -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra"
         cmake --build ./ --target clangd
+        cd ..
+
+    - name: Rename file (Ubuntu, MacOS)
+      run: zip -r ./build ${{ matrix.os }}.zip
+
+    - name: Rename file (Windows)
+      run: powershell Compress-Archive -Path ./build -DestinationPath ${{ matrix.os }}.zip
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with: 
+        name: my-artifact
+        path: ${{ matrix.os }}.zip
