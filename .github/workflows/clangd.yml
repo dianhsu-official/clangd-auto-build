@@ -42,7 +42,7 @@ jobs:
       run: zip -r ${{ matrix.os }}-${{ matrix.arch }}.zip ./build 
 
     - name: Rename file (Windows)
-      run: powershell Compress-Archive -Path ./build -DestinationPath ${{ matrix.os }}-${{ matrix.arch }}.zip
+      run: Compress-Archive -Path ./build -DestinationPath ${{ matrix.os }}-${{ matrix.arch }}.zip
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
