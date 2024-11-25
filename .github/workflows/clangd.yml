@@ -39,9 +39,11 @@ jobs:
         cd ..
 
     - name: Rename file (Ubuntu, MacOS)
+      if: ${{ !contains(matrix.os, 'windows') }}
       run: zip -r ${{ matrix.os }}-${{ matrix.arch }}.zip ./build 
 
     - name: Rename file (Windows)
+      if: ${{ contains(matrix.os, 'windows') }}
       run: Compress-Archive -Path ./build -DestinationPath ${{ matrix.os }}-${{ matrix.arch }}.zip
 
     - name: Upload artifacts
