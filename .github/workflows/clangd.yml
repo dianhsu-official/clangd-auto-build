@@ -82,9 +82,9 @@ jobs:
       - uses: rickstaa/action-create-tag@main
         id: "tag_create"
         with:
-          tag: "${{ NOW }}"
+          tag: "${{ env.NOW }}"
           tag_exists_error: false
-          message: "Release ${{ NOW }}"
+          message: "Release ${{ env.NOW }}"
       - name: Download artifacts
         uses: actions/download-artifact@main
         with:
@@ -97,7 +97,7 @@ jobs:
         with:
           artifacts: artifacts/*
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ Now }}
+          tag: ${{ env.NOW }}
           generateReleaseNotes: true
           draft: false
           prerelease: false
