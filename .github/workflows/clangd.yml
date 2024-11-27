@@ -15,8 +15,6 @@ jobs:
             arch: amd64
           - os: ubuntu-24.04
             arch: aarch64
-          - os: macos-15-large
-            arch: amd64
           - os: macos-15
             arch: aarch64
           - os: windows-latest
