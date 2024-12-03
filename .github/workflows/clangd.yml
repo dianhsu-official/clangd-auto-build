@@ -52,7 +52,7 @@ jobs:
         cmake --build ./ --target clangd
         cd ..
       
-    - name: Build
+    - name: Build (Ubuntu AMD64, Windows AMD64)
       if: ${{ (!contains(matrix.os, 'ubuntu') || !contains(matrix.arch, 'aarch64')) && !contains(matrix.os, 'macos') }}
       run: |
         mkdir build
@@ -63,7 +63,7 @@ jobs:
         cmake --build ./ --target clangd
         cd ..
 
-    - name: Build (macos)
+    - name: Build (MacOS)
       if: ${{ contains(matrix.os, 'macos') }}
       run: |
         mkdir build
