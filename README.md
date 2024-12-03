@@ -1,2 +1,2 @@
-# Actions
-Github Actions for auto build or auto run.
+# clangd auto build
+Github Actions for clangd auto build or auto run.
