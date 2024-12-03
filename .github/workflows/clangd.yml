@@ -68,17 +68,17 @@ jobs:
     - name: Rename file (Ubuntu, MacOS)
       if: ${{ !contains(matrix.os, 'windows') }}
       run: |
-        cd ./build/bin
-        zip  ${{ matrix.os }}-${{ matrix.arch }}.zip ./*
-        cd ../..
+        cd ./build
+        zip -r ${{ matrix.os }}-${{ matrix.arch }}.zip bin/ lib/clang/
+        cd ..
         
 
     - name: Rename file (Windows)
       if: ${{ contains(matrix.os, 'windows') }}
       run: |
-        cd ./build/bin
-        Compress-Archive -Path ./* -DestinationPath ${{ matrix.os }}-${{ matrix.arch }}.zip
-        cd ../..
+        cd ./build
+        Compress-Archive -Path bin,lib/clang/ -DestinationPath ${{ matrix.os }}-${{ matrix.arch }}.zip
+        cd ..
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
