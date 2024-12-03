@@ -53,13 +53,23 @@ jobs:
         cd ..
       
     - name: Build
-      if: ${{ !contains(matrix.os, 'ubuntu') || !contains(matrix.arch, 'aarch64') }}
+      if: ${{ (!contains(matrix.os, 'ubuntu') || !contains(matrix.arch, 'aarch64')) && !contains(matrix.os, 'macos') }}
       run: |
         mkdir build
         cd build
         cmake -G Ninja ../llvm/ -DCMAKE_BUILD_TYPE=Release \
           -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" \
           -DCMAKE_EXE_LINKER_FLAGS="-static-libgcc -static-libstdc++"
+        cmake --build ./ --target clangd
+        cd ..
+
+    - name: Build (macos)
+      if: ${{ contains(matrix.os, 'macos') }}
+      run: |
+        mkdir build
+        cd build
+        cmake -G Ninja ../llvm/ -DCMAKE_BUILD_TYPE=Release \
+          -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" 
         cmake --build ./ --target clangd
         cd ..
 
