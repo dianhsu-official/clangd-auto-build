@@ -84,7 +84,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with: 
         name: ${{ matrix.os }}-${{ matrix.arch }}
-        path: ./build/bin/${{ matrix.os }}-${{ matrix.arch }}.zip
+        path: ./build/${{ matrix.os }}-${{ matrix.arch }}.zip
   
   release:
     runs-on: ubuntu-latest
